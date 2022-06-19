@@ -14,9 +14,9 @@ function App() {
 
   return (
     <div className='App'>
-      <DataProvider>
 
-        <Header title={'Art Blog'} />
+      <Header title={'Art Blog'} />
+      <DataProvider>
         <Nav />
 
         <Routes >
@@ -34,8 +34,8 @@ function App() {
 
         </Routes>
 
-        <Footer />
       </DataProvider>
+      <Footer />
     </div>
   );
 }

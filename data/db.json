@@ -1,18 +1,6 @@
 {
   "posts": [
     {
-      "id": 5,
-      "caption": "hi",
-      "uploaded_on": "Fri Jun 17 2022",
-      "description": "wnfj wrfnwrofj wff"
-    },
-    {
-      "id": 7,
-      "caption": "post new",
-      "uploaded_on": "Sun Jun 19 2022",
-      "description": "vvvvvvvvvvv"
-    },
-    {
       "id": 8,
       "caption": "bdbetb rthb yrn ",
       "uploaded_on": "Sun Jun 19 2022",
@@ -23,6 +11,18 @@
       "caption": " ymj ",
       "uploaded_on": "Sun Jun 19 2022",
       "description": "mjy  mu m"
+    },
+    {
+      "id": 10,
+      "caption": "new post",
+      "uploaded_on": "Sun Jun 19 2022",
+      "description": "body of new post"
+    },
+    {
+      "id": 11,
+      "caption": "ewdf",
+      "uploaded_on": "Sun Jun 19 2022",
+      "description": "ewd"
     }
   ]
 }

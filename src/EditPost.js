@@ -1,11 +1,15 @@
-import React, { useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import api from './api/posts';
 import DataContext from './context/DataContext';
 
 const EditPost = () => {
-    const { posts, handleEdit, editCaption, setEditCaption, editDescription, setEditDescription } = useContext(DataContext);
+    const { posts, setPosts } = useContext(DataContext);
+    const [editCaption, setEditCaption] = useState('');
+    const [editDescription, setEditDescription] = useState('');
     const { id } = useParams();
     const post = posts.find(post => (post.id).toString() === id);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (post) {
@@ -13,6 +17,25 @@ const EditPost = () => {
             setEditDescription(post.description);
         }
     }, [post, setEditCaption, setEditDescription])
+
+    const handleEdit = async (id) => {
+        const uploaded_on = (new Date(Date.now())).toDateString();
+        const updatedPost = { id: id, caption: editCaption, uploaded_on: uploaded_on, description: editDescription };
+        try {
+            const response = await api.put(`/posts/${id}`, updatedPost);
+
+            setPosts(posts.map(post => {
+                return (post.id === id ? { ...response.data } : post)
+            }));
+            setEditCaption('');
+            setEditDescription('');
+            navigate('/');
+
+        } catch (error) {
+            console.log(`Error: ${error.message}`);
+
+        }
+    }
 
     return (
         <main className='NewPost'>
