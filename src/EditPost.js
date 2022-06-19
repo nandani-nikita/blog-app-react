@@ -1,14 +1,13 @@
-import React, { useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useEffect, useContext } from 'react';
+import { useParams } from 'react-router-dom';
+import DataContext from './context/DataContext';
 
-const EditPost = ({
-    posts, handleEdit, editCaption, setEditCaption, editDescription, setEditDescription
-}) => {
+const EditPost = () => {
+    const { posts, handleEdit, editCaption, setEditCaption, editDescription, setEditDescription } = useContext(DataContext);
     const { id } = useParams();
     const post = posts.find(post => (post.id).toString() === id);
 
     useEffect(() => {
-        console.log('fired');
         if (post) {
             setEditCaption(post.caption);
             setEditDescription(post.description);
@@ -20,7 +19,7 @@ const EditPost = ({
             {editCaption &&
                 <>
                     <h2>Edit Post</h2>
-                    <form className='newPostForm' onSubmit={(e)=>e.preventDefault()} >
+                    <form className='newPostForm' onSubmit={(e) => e.preventDefault()} >
                         <label htmlFor='editCaption'>Caption:</label>
                         <input
                             id="editCaption"
@@ -35,15 +34,15 @@ const EditPost = ({
                             required
                             value={editDescription}
                             onChange={(e) => setEditDescription(e.target.value)} />
-                        <button type='submit' onClick={()=>handleEdit(post.id)}>Submit</button>
+                        <button type='submit' onClick={() => handleEdit(post.id)}>Submit</button>
                     </form>
                 </>
             }
             {!editCaption &&
-            <>
-            <h2>Post Not Found</h2>
-            <p>Well, that's disappointing.</p>
-            </>
+                <>
+                    <h2>Post Not Found</h2>
+                    <p>Well, that's disappointing.</p>
+                </>
 
             }
         </main>
